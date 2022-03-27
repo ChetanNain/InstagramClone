@@ -30,5 +30,13 @@
 }
 
 .post_comment{
-    
+    margin :10px;
+}
+
+.post_commentbox{
+    height :56px;
+    width : 608px;
+    border : 1px solid #dbdbdb;
+    font-size:16px;
+    padding-left: 10px;
 }

@@ -10,18 +10,38 @@ import './Post.css'
 class Post extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            commentList :[]
+         } 
     }
-    state = {  }
+
+    componentDidMount() {
+        this.getComments();
+    }
+
+    getComments = () => {
+        let data = [
+            {
+                "username" : "ASD",
+                "commentId" : "1234",
+                "timestamp" : "123456",
+                "description" : "Comment 1"
+            }
+        ];
+        this.setState({commentList : data});
+    }
+
     render() { 
+        console.log(this.props);
         return (
             <div>
                 <div className='post_container'>
                     <div className='post_header'>
-                        <Avatar className="post_image" src=""/>
-                        <div className="post_username">Username</div>
+                        <Avatar className="post_image" src={this.props.profileImage}/>
+                        <div className="post_username">{this.props.userName}</div>
                     </div>
-                    <div>
-                        <img src={postimage} width="615px"/>
+                    <div> 
+                      <img src={this.props.postImage} width="615px"/>
                     </div>
                     <div>
                     <div style={{"marginLeft":"10px"}}>
@@ -30,39 +50,18 @@ class Post extends Component {
                         <img src={share} className='post_reactimage'/>
                     </div>
                     <div style ={{"fontWeight":"bold", "marginLeft" : "20px"}}>
-                        786 Likes
+                        {this.props.likes} Likes
                     </div>
                     </div>
                     <div>
-                        <div className="post_comment">Hello Guys!</div>
-                        <div className="post_comment">Hello Guys!</div>
-                        <div className="post_comment">Hello Guys!</div>
-                        <div className="post_comment">Hello Guys!</div>
-                        <input type="text" placeholder = "Add a comment" />
+                        {
+                            this.state.commentList.map((item,index)=>(
+                                <div className="post_comment" key = {item.username + index}> {item.username} : {item.description} </div>
+                            ))
+                        }
+                        <input type="text" className="post_commentbox" placeholder = "Add a comment" />
 
                     </div>
-                </div>
-                <div className='post_container'>
-                    <div className='post_header'>
-                        <Avatar className="post_image" src=""/>
-                        <div className="post_username">Username</div>
-                    </div>
-                    <div>
-                        <img src={postimage} width="615px"/>
-                    </div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div className='post_container'>
-                    <div className='post_header'>
-                        <Avatar className="post_image" src=""/>
-                        <div className="post_username">Username</div>
-                    </div>
-                    <div>
-                        <img src={postimage} width="615px"/>
-                    </div>
-                    <div></div>
-                    <div></div>
                 </div>
             </div>
         );

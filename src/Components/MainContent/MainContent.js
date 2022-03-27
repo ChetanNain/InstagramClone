@@ -15,7 +15,6 @@ class MainContent extends Component {
             <div>
                 <Grid container>
                     <Grid item xs={2}>
-                        Grid
                     </Grid>
                     <Grid item xs={6}>
                         <StatusBar/>
